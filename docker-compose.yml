@@ -1,0 +1,11 @@
+version: "3"
+
+services: 
+    app:
+        image: node:14-alpine 
+        volumes:  
+            - ".:/app"
+        working_dir: "/app"
+        command: "yarn start"
+        ports:  
+            - 8080:3333
