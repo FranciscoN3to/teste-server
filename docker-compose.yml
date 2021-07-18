@@ -10,4 +10,4 @@ services:
         command: >
             sh -c "yarn && yarn start"
         ports:  
-            - 8080:3333
+            - 80:3333
