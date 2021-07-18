@@ -1,5 +1,5 @@
  
-name: Client Deploy
+name: Server Deploy
 
 on:
   push:
