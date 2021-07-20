@@ -34,14 +34,19 @@ jobs:
         run: yarn install
 
       - name: Deploy
-        env:
-          SSH_PASSWORD: ${{ secrets.SSH_PASSWORD }}
-          SSH_PORT: ${{ secrets.SSH_PORT }}
-          SSH_IP_ADDRESS: ${{ secrets.SSH_IP_ADDRESS }}
-          SSH_USER: ${{ secrets.SSH_USER }}
         run: |
-          sudo apt-get install sshpass
-          sshpass -p $SSH_PASSWORD rsync -av -e "ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -p $SSH_PORT" ./ $SSH_USER@$SSH_IP_ADDRESS:/app/teste-server
+          ls
+          pwd
+
+
+        # env:
+        #   SSH_PASSWORD: ${{ secrets.SSH_PASSWORD }}
+        #   SSH_PORT: ${{ secrets.SSH_PORT }}
+        #   SSH_IP_ADDRESS: ${{ secrets.SSH_IP_ADDRESS }}
+        #   SSH_USER: ${{ secrets.SSH_USER }}
+        # run: |
+        #   sudo apt-get install sshpass
+        #   sshpass -p $SSH_PASSWORD rsync -av -e "ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -p $SSH_PORT" ./ $SSH_USER@$SSH_IP_ADDRESS:/app/teste-server
 
 
       
