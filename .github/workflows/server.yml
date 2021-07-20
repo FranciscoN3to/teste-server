@@ -36,7 +36,7 @@ jobs:
       - name: Deploy
         run: |
           rsync -rlh -progress ./ /app/teste-server
-          cp /app/teste-server
+          cd /app/teste-server
           docker-compose down && docker-compose up -d --build
 
         # env:
