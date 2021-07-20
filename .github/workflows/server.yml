@@ -18,26 +18,26 @@ jobs:
           node -v
           yarn -v
 
-      - name: Cache node modules
-        uses: actions/cache@v2
-        env:
-          cache-name: cache-node-module
-        with:
-          path: ~/.yarn-cache
-          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('yarn.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-build-${{ env.cache-name }}-
-            ${{ runner.os }}-build-
-            ${{ runner.os }}-
+      # - name: Cache node modules
+      #   uses: actions/cache@v2
+      #   env:
+      #     cache-name: cache-node-module
+      #   with:
+      #     path: ~/.yarn-cache
+      #     key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('yarn.lock') }}
+      #     restore-keys: |
+      #       ${{ runner.os }}-build-${{ env.cache-name }}-
+      #       ${{ runner.os }}-build-
+      #       ${{ runner.os }}-
 
       - name: Install dependencies
         run: yarn install
 
       - name: Deploy
         run: |
-          ls
-          pwd
-
+          rsync -rlh -progress ./ /app/teste-server
+          cp /app/teste-server
+          docker-compose down && docker-compose up -d --build
 
         # env:
         #   SSH_PASSWORD: ${{ secrets.SSH_PASSWORD }}
